@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServicoFormRequest;
+use App\Http\Requests\UpdateFormRequest;
 use App\Models\Servico;
 use Illuminate\Http\Request;
 
@@ -81,7 +82,7 @@ class ServicoController extends Controller
             'message' => 'Serviço deletado com êxito'
         ]);
         }
-        public function ServicoUpdate(Request $request){
+        public function ServicoUpdate(UpdateFormRequest $request){
             $servico = Servico::find($request->id);
             if(!isset($servico)){
                 return response()->json([
