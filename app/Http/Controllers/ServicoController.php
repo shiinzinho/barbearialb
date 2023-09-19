@@ -45,7 +45,7 @@ class ServicoController extends Controller
         }
         return response()->Json([
             'status' => true,
-            'data' => $servico
+            'message' => "Não há resultados para pesquisa"
         ]);
     }
     public function ServicoDescricao(Request $request){
@@ -58,7 +58,7 @@ class ServicoController extends Controller
         }
         return response()->Json([
             'status' => true,
-            'data' => $servico
+            'message' => "Não há resultados para pesquisa"
         ]);
     }
     public function ServicoRetornar(){
