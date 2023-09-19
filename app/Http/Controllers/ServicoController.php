@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServicoFormRequest;
-use App\Http\Requests\UpdateFormRequest;
+use App\Http\Requests\UpdateServicoFormRequest;
 use App\Models\Servico;
 use Illuminate\Http\Request;
 
 class ServicoController extends Controller
 {
-    public function Servico(ServicoFormRequest $request){
+    public function servico(ServicoFormRequest $request){
         $servico = Servico::create([
-            'Nome' => $request->Nome,
-            'Descricao' => $request->Descricao,
-            'Duracao' => $request->Duracao,
-            'Preco' => str_replace(',', '.', $request->Preco),
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'duracao' => $request->duracao,
+            'preco' => str_replace(',', '.', $request->preco),
         ]);
         return response()->json([
             "sucess" => true,
@@ -22,7 +22,7 @@ class ServicoController extends Controller
             "data"=> $servico
         ]);
     }
-    public function ServicoID($id){
+    public function servicoId($id){
         $servico = Servico::find($id);
         if($servico == null){
             return response()->json([
@@ -35,8 +35,8 @@ class ServicoController extends Controller
             'data' => $servico
         ]);
     }
-    public function ServicoNome(Request $request){
-        $servico = Servico::where('Nome', 'like', '%' . $request->Nome . '%')->get();
+    public function servicoNome(Request $request){
+        $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
         if(count($servico) > 0){
             return response()->json([
                 'status' => true,
@@ -48,8 +48,8 @@ class ServicoController extends Controller
             'message' => "Não há resultados para pesquisa"
         ]);
     }
-    public function ServicoDescricao(Request $request){
-        $servico = Servico::where('Descricao', 'like', '%' . $request->Descricao . '%')->get();
+    public function servicoDescricao(Request $request){
+        $servico = Servico::where('descricao', 'like', '%' . $request->descricao . '%')->get();
         if(count($servico) > 0){
             return response()->json([
                 'status' => true,
@@ -61,14 +61,14 @@ class ServicoController extends Controller
             'message' => "Não há resultados para pesquisa"
         ]);
     }
-    public function ServicoRetornar(){
+    public function servicoRetornar(){
         $servico = Servico::All();
         return response()->json([
             'status' => true,
             'data' => $servico
         ]);
     }
-    public function ServicoExcluir($id){
+    public function servicoExcluir($id){
         $servico = Servico::find($id);
         if(!isset($servico)){
             return response()->json([
@@ -82,7 +82,7 @@ class ServicoController extends Controller
             'message' => 'Serviço deletado com êxito'
         ]);
         }
-        public function ServicoUpdate(UpdateFormRequest $request){
+        public function servicoUpdate(UpdateServicoFormRequest $request){
             $servico = Servico::find($request->id);
             if(!isset($servico)){
                 return response()->json([
@@ -90,17 +90,17 @@ class ServicoController extends Controller
                     'message' => "Serviço não encontrado"
                 ]);
             }
-            if(isset($request->Nome)){
-                $servico->Nome = $request->Nome;
+            if(isset($request->nome)){
+                $servico->nome = $request->nome;
             }
-            if(isset($request->Descricao)){
-                $servico->Descricao = $request->Descricao;
+            if(isset($request->descricao)){
+                $servico->descricao = $request->descricao;
             }
-            if(isset($request->Duracao)){
-                $servico->Duracao = $request->Duracao;
+            if(isset($request->duracao)){
+                $servico->duracao = $request->duracao;
             }
-            if(isset($request->Preco)){
-                $servico->Preco = $request->Preco;
+            if(isset($request->preco)){
+                $servico->preco = $request->preco;
             }
             $servico->update();
             return response()->json([

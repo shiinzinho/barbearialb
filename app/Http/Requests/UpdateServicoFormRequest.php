@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateFormRequest extends FormRequest
+class UpdateServicoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class UpdateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Nome'=>'max:80|min:5',
-            'Descricao'=>'max:200|min:10',
-            'Duracao'=>'numeric',
-            'Preco'=>'decimal:2',
+            'nome'=>'max:80|min:5',
+            'descricao'=>'max:200|min:10',
+            'duracao'=>'numeric',
+            'preco'=>'decimal:2',
         ];
     }
     public function failedValidation(Validator $validator){
@@ -38,13 +38,13 @@ class UpdateFormRequest extends FormRequest
     }
     public function messages(){
         return [
-            'Nome.max' => 'Nome deve conter no máximo 80 caracteres',
-            'Nome.min' => 'Nome deve conter no mínimo 5 caracteres',
-            'Nome.unique' => 'Nome já cadastrado no sistema',
-            'Descricao.max' => 'Descricao deve conter no máximo 200 caracteres',
-            'Descricao.min' => 'Descricao deve conter no mínimo 10 caracteres',
-            'Duracao.numeric' => 'Duracao deve conter apenas números',
-            'Preco.decimal' => 'Preco deve conter apenas casas decimais',
+            'nome.max' => 'Nome deve conter no máximo 80 caracteres',
+            'nome.min' => 'Nome deve conter no mínimo 5 caracteres',
+            'nome.unique' => 'Nome já cadastrado no sistema',
+            'descricao.max' => 'Descricao deve conter no máximo 200 caracteres',
+            'descricao.min' => 'Descricao deve conter no mínimo 10 caracteres',
+            'duracao.numeric' => 'Duracao deve conter apenas números',
+            'preco.decimal' => 'Preco deve conter apenas casas decimais',
         ];
     }
 }

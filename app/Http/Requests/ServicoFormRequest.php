@@ -24,10 +24,10 @@ class ServicoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Nome'=>'required|max:80|min:5|unique:servicos,Nome',
-            'Descricao'=>'required|max:200|min:10',
-            'Duracao'=>'required|numeric',
-            'Preco'=>'required|decimal:2',
+            'nome'=>'required|max:80|min:5|unique:servicos,Nome',
+            'descricao'=>'required|max:200|min:10',
+            'duracao'=>'required|numeric',
+            'preco'=>'required|decimal:2',
         ];
     }
     public function failedValidation(Validator $validator){
@@ -38,17 +38,17 @@ class ServicoFormRequest extends FormRequest
     }
     public function messages(){
         return [
-            'Nome.required' => 'Nome obrigatório',
-            'Nome.max' => 'Nome deve conter no máximo 80 caracteres',
-            'Nome.min' => 'Nome deve conter no mínimo 5 caracteres',
-            'Nome.unique' => 'Nome já cadastrado no sistema',
-            'Descricao.required' => 'Descricao obrigatório',
-            'Descricao.max' => 'Descricao deve conter no máximo 200 caracteres',
-            'Descricao.min' => 'Descricao deve conter no mínimo 10 caracteres',
-            'Duracao.required' => 'Duracao obrigatório',
-            'Duracao.numeric' => 'Duracao deve conter apenas números',
-            'Preco.required' => 'Preco obrigatório',
-            'Preco.decimal' => 'Preco deve conter apenas casas decimais',
+            'nome.required' => 'Nome obrigatório',
+            'nome.max' => 'Nome deve conter no máximo 80 caracteres',
+            'nome.min' => 'Nome deve conter no mínimo 5 caracteres',
+            'nome.unique' => 'Nome já cadastrado no sistema',
+            'descricao.required' => 'Descricao obrigatório',
+            'descricao.max' => 'Descricao deve conter no máximo 200 caracteres',
+            'descricao.min' => 'Descricao deve conter no mínimo 10 caracteres',
+            'duracao.required' => 'Duracao obrigatório',
+            'duracao.numeric' => 'Duracao deve conter apenas números',
+            'preco.required' => 'Preco obrigatório',
+            'preco.decimal' => 'Preco deve conter apenas casas decimais',
         ];
     }
 }
