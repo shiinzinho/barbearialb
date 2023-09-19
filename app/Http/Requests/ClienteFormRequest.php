@@ -61,6 +61,7 @@ class ClienteFormRequest extends FormRequest
             'cpf.required' => 'CPF obrigatório',
             'cpf.max' => 'CPF deve conter no máximo 11 caracteres',
             'cpf.min' => 'CPF deve conter no mínimo 11 caracteres',
+            'cpf.unique' => 'CPF já cadastrado no sistema',
             'dataNascimento.required' => 'Data de nascimento obrigatório',
             'dataNascimento.date' => 'O campo deve conter apenas datas',
             'cidade.required' => 'Cidade obrigatório',

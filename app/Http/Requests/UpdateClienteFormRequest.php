@@ -57,6 +57,7 @@ class UpdateClienteFormRequest extends FormRequest
             'email.unique' => 'E-mail já cadastrado no sistema',
             'cpf.max' => 'CPF deve conter no máximo 11 caracteres',
             'cpf.min' => 'CPF deve conter no mínimo 11 caracteres',
+            'cpf.unique' => 'CPF já cadastrado no sistema',
             'dataNascimento.date' => 'O campo deve conter apenas datas',
             'cidade.max' => 'Cidade deve conter no máximo 120 caracteres',
             'estado.max' => 'Estado deve conter no máximo 2 caracteres',
