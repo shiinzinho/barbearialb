@@ -26,7 +26,7 @@ class ProfissionalFormRequest extends FormRequest
         return [
             'nome'=>'required|max:120|min:5',
             'celular'=>'required|max:11|min:10',
-            'email'=>'required|max:120|unique:profissionals,email',
+            'email'=>'required|max:120|email:rfc,dns|unique:profissionals,email',
             'cpf'=>'required|max:11|min:11|unique:profissionals,cpf',
             'dataNascimento'=>'required|date',
             'cidade'=>'required|max:120',
@@ -38,7 +38,7 @@ class ProfissionalFormRequest extends FormRequest
             'cep'=>'required|max:8|min:8',
             'complemento'=>'max:150',
             'senha'=>'required',
-            
+            'salario'=>'required|decimal:2',
         ];
     }
     public function failedValidation(Validator $validator){
@@ -57,6 +57,7 @@ class ProfissionalFormRequest extends FormRequest
             'celular.min' => 'Celular deve conter no mínimo 10 caracteres',
             'email.required' => 'E-mail obrigatório',
             'email.max' => 'E-mail deve conter no máximo 120 caracteres',
+            'email.email' => 'Formato de e-mail inválido',
             'email.unique' => 'E-mail já cadastrado no sistema',
             'cpf.required' => 'CPF obrigatório',
             'cpf.max' => 'CPF deve conter no máximo 11 caracteres',
@@ -82,6 +83,8 @@ class ProfissionalFormRequest extends FormRequest
             'cep.min' => 'CEP deve conter no mínimo 8 caracteres',
             'complemento.max' => 'Complemento deve conter no máximo 150 caracteres',
             'senha.required' => 'Senha obrigatório',
+            'salario.required' => 'Salário obrigatório',
+            'salario.decimal' => 'O campo deve conter casas decimais',
         ];
     }
 }

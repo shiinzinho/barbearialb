@@ -26,7 +26,7 @@ class ClienteFormRequest extends FormRequest
         return [
             'nome'=>'required|max:120|min:5',
             'celular'=>'required|max:11|min:10',
-            'email'=>'required|max:120|unique:clientes,email',
+            'email'=>'required|max:120|email:rfc,dns|unique:clientes,email',
             'cpf'=>'required|max:11|min:11|unique:clientes,cpf',
             'dataNascimento'=>'required|date',
             'cidade'=>'required|max:120',
@@ -38,8 +38,6 @@ class ClienteFormRequest extends FormRequest
             'cep'=>'required|max:8|min:8',
             'complemento'=>'max:150',
             'senha'=>'required',
-            'salario'=>'required',
-            
         ];
     }
     public function failedValidation(Validator $validator){
@@ -58,6 +56,7 @@ class ClienteFormRequest extends FormRequest
             'celular.min' => 'Celular deve conter no mínimo 10 caracteres',
             'email.required' => 'E-mail obrigatório',
             'email.max' => 'E-mail deve conter no máximo 120 caracteres',
+            'email.email' => 'Formato de e-mail inválido',
             'email.unique' => 'E-mail já cadastrado no sistema',
             'cpf.required' => 'CPF obrigatório',
             'cpf.max' => 'CPF deve conter no máximo 11 caracteres',

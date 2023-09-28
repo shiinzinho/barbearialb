@@ -26,8 +26,8 @@ class UpdateClienteFormRequest extends FormRequest
         return [
             'nome'=>'max:120|min:5',
             'celular'=>'max:11|min:10',
-            'email'=>'max:120|unique:clientes,email',
-            'cpf'=>'max:11|min:11|unique:clientes,cpf',
+            'email'=>'max:120|email:rfc,dns|unique:clientes,email,' . $this -> id,
+            'cpf'=>'max:11|min:11|unique:clientes,cpf,' . $this -> id,
             'dataNascimento'=>'date',
             'cidade'=>'max:120',
             'estado'=>'max:2|min:2',
@@ -37,8 +37,6 @@ class UpdateClienteFormRequest extends FormRequest
             'bairro'=>'max:100',
             'cep'=>'max:8|min:8',
             'complemento'=>'max:150',
-            'senha'=>'',
-            
         ];
     }
     public function failedValidation(Validator $validator){
@@ -54,6 +52,7 @@ class UpdateClienteFormRequest extends FormRequest
             'celular.max' => 'Celular deve conter no máximo 11 caracteres',
             'celular.min' => 'Celular deve conter no mínimo 10 caracteres',
             'email.max' => 'E-mail deve conter no máximo 120 caracteres',
+            'email.email' => 'Formato de e-mail inválido',
             'email.unique' => 'E-mail já cadastrado no sistema',
             'cpf.max' => 'CPF deve conter no máximo 11 caracteres',
             'cpf.min' => 'CPF deve conter no mínimo 11 caracteres',

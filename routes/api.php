@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,22 +46,22 @@ Route::delete('client/delete/{id}', [ClienteController::class, 'clienteExcluir']
 
 Route::put('client/update', [ClienteController::class, 'clienteUpdate']);
 
-//Profissionais
+//Profissional
 
-Route::post('professional', [ProfisssionalController::class, 'profissional']);
+Route::post('professional', [ProfissionalController::class, 'profissional']);
 
-Route::get('professional/find/{id}', [ProfisssionalController::class, 'profissionalId']);
+Route::get('professional/find/{id}', [ProfissionalController::class, 'profissionalId']);
 
-Route::post('professional/name', [ProfisssionalController::class, 'profissionalNome']);
+Route::post('professional/name', [ProfissionalController::class, 'profissionalNome']);
 
-Route::post('professional/cpf', [ProfisssionalController::class, 'profissionalCpf']);
+Route::post('professional/cpf', [ProfissionalController::class, 'profissionalCpf']);
 
-Route::post('professional/cellphone', [ProfisssionalController::class, 'profissionalCelular']);
+Route::post('professional/cellphone', [ProfissionalController::class, 'profissionalCelular']);
 
-Route::post('professional/email', [ProfisssionalController::class, 'profissionalEmail']);
+Route::post('professional/email', [ProfissionalController::class, 'profissionalEmail']);
 
-Route::get('professional/all', [ProfisssionalController::class, 'profissionalRetornar']);
+Route::get('professional/all', [ProfissionalController::class, 'profissionalRetornar']);
 
-Route::delete('professional/delete/{id}', [ProfisssionalController::class, 'profissionalExcluir']);
+Route::delete('professional/delete/{id}', [ProfissionalController::class, 'profissionalExcluir']);
 
-Route::put('professional/update', [ProfisssionalController::class, 'profissionalUpdate']);
+Route::put('professional/update', [ProfissionalController::class, 'profissionalUpdate']);
