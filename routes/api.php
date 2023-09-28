@@ -43,3 +43,24 @@ Route::get('client/all', [ClienteController::class, 'clienteRetornar']);
 
 Route::delete('client/delete/{id}', [ClienteController::class, 'clienteExcluir']);
 
+Route::put('client/update', [ClienteController::class, 'clienteUpdate']);
+
+//Profissionais
+
+Route::post('professional', [ProfisssionalController::class, 'profissional']);
+
+Route::get('professional/find/{id}', [ProfisssionalController::class, 'profissionalId']);
+
+Route::post('professional/name', [ProfisssionalController::class, 'profissionalNome']);
+
+Route::post('professional/cpf', [ProfisssionalController::class, 'profissionalCpf']);
+
+Route::post('professional/cellphone', [ProfisssionalController::class, 'profissionalCelular']);
+
+Route::post('professional/email', [ProfisssionalController::class, 'profissionalEmail']);
+
+Route::get('professional/all', [ProfisssionalController::class, 'profissionalRetornar']);
+
+Route::delete('professional/delete/{id}', [ProfisssionalController::class, 'profissionalExcluir']);
+
+Route::put('professional/update', [ProfisssionalController::class, 'profissionalUpdate']);
