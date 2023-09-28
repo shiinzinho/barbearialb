@@ -32,7 +32,7 @@ class ClienteFormRequest extends FormRequest
             'cidade'=>'required|max:120',
             'estado'=>'required|max:2|min:2',
             'pais'=>'required|max:80',
-            'endereco'=>'required|max:120',
+            'rua'=>'required|max:120',
             'numero'=>'required|max:10',
             'bairro'=>'required|max:100',
             'cep'=>'required|max:8|min:8',
