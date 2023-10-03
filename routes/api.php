@@ -27,7 +27,6 @@ Route::put('service/update', [ServicoController::class, 'servicoUpdate']);
 
 //Cliente
 
-
 Route::post('client', [ClienteController::class, 'cliente']);
 
 Route::get('client/find/{id}', [ClienteController::class, 'clienteId']);
@@ -45,6 +44,9 @@ Route::get('client/all', [ClienteController::class, 'clienteRetornar']);
 Route::delete('client/delete/{id}', [ClienteController::class, 'clienteExcluir']);
 
 Route::put('client/update', [ClienteController::class, 'clienteUpdate']);
+
+
+
 
 //Profissional
 
@@ -65,3 +67,9 @@ Route::get('professional/all', [ProfissionalController::class, 'profissionalReto
 Route::delete('professional/delete/{id}', [ProfissionalController::class, 'profissionalExcluir']);
 
 Route::put('professional/update', [ProfissionalController::class, 'profissionalUpdate']);
+
+
+
+
+//Agenda
+
