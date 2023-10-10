@@ -27,7 +27,7 @@ class AgendaFormRequest extends FormRequest
             'profissional_id'=>'required|integer',
             'cliente_id'=>'integer',
             'servico_id'=>'integer',
-            'data_hora'=>'requireddate',
+            'data_hora'=>'required|date',
             'tipo_pagamento'=>'max:20|min:3',
             'valor'=>'decimal:2',
         ];
