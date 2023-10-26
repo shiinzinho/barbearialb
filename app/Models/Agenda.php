@@ -15,7 +15,6 @@ class Agenda extends Model
         'servico_id',
         'data_hora',
         'tipo_pagamento',
-        'formaDePagamento',
         'valor',
     ];
 }
