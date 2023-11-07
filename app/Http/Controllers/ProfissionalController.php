@@ -170,6 +170,9 @@ class ProfissionalController extends Controller
             if(isset($request->senha)){
                 $profissional->senha = $request->senha;
             }
+            if(isset($request->salario)){
+                $profissional->salario = $request->salario;
+            }
             $profissional->update();
             return response()->json([
                 'status' => true,
