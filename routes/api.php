@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
@@ -73,3 +74,10 @@ Route::put('professional/update', [ProfissionalController::class, 'profissionalU
 
 //Agenda
 
+Route::post('schedule', [AgendaController::class, 'agenda']);
+
+Route::get('schedule/all', [AgendaController::class, 'agendaRetornar']);
+
+Route::delete('schedule/delete/{id}', [AgendaController::class, 'agendaExcluir']);
+
+Route::put('schedule/update', [AgendaController::class, 'agendaUpdate']);
