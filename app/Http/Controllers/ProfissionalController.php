@@ -6,6 +6,7 @@ use App\Http\Requests\ProfissionalFormRequest;
 use App\Http\Requests\UpdateProfissionalFormRequest;
 use App\Models\Profissional;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfissionalController extends Controller
 {
@@ -119,6 +120,21 @@ class ProfissionalController extends Controller
             'status' => true,
             'message' => 'Profissional deletado com êxito'
         ]);
+        }
+        public function profissionalRestaurar(Request $request){
+            $profissional = Profissional::where('cpf', $request->cpf)->first();
+            if(isset($profissional)){
+                $profissional->senha = Hash::make($profissional->cpf);
+                $profissional->update();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Senha redefinida'
+                ]);
+            }
+            return response()->json([
+                'status' => false,
+                'message' => 'Não foi possível alterar a senha'
+            ]);
         }
         public function profissionalUpdate(UpdateProfissionalFormRequest $request){
             $profissional = Profissional::find($request->id);

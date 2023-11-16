@@ -46,6 +46,8 @@ Route::delete('client/delete/{id}', [ClienteController::class, 'clienteExcluir']
 
 Route::put('client/update', [ClienteController::class, 'clienteUpdate']);
 
+Route::put('client/restore', [ClienteController::class, 'clienteRestaurar']);
+
 
 
 
@@ -68,6 +70,8 @@ Route::get('professional/all', [ProfissionalController::class, 'profissionalReto
 Route::delete('professional/delete/{id}', [ProfissionalController::class, 'profissionalExcluir']);
 
 Route::put('professional/update', [ProfissionalController::class, 'profissionalUpdate']);
+
+Route::put('professional/restore', [ProfissionalController::class, 'profissionalRestaurar']);
 
 
 

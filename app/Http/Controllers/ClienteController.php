@@ -6,6 +6,7 @@ use App\Http\Requests\ClienteFormRequest;
 use App\Http\Requests\UpdateClienteFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -118,6 +119,21 @@ class ClienteController extends Controller
             'status' => true,
             'message' => 'Cliente deletado com êxito'
         ]);
+        }
+        public function clienteRestaurar(Request $request){
+            $cliente = Cliente::where('cpf', $request->cpf)->first();
+            if(isset($cliente)){
+                $cliente->senha = Hash::make($cliente->cpf);
+                $cliente->update();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Senha redefinida'
+                ]);
+            }
+            return response()->json([
+                'status' => false,
+                'message' => 'Não foi possível alterar a senha'
+            ]);
         }
         public function clienteUpdate(UpdateClienteFormRequest $request){
             $cliente = Cliente::find($request->id);
