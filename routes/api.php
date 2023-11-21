@@ -85,3 +85,11 @@ Route::get('schedule/all', [AgendaController::class, 'agendaRetornar']);
 Route::delete('schedule/delete/{id}', [AgendaController::class, 'agendaExcluir']);
 
 Route::put('schedule/update', [AgendaController::class, 'agendaUpdate']);
+
+Route::post('schedule/time', [AgendaController::class, 'horarioProfissional']);
+
+Route::post('schedule/find', [AgendaController::class, 'pesquisarAgenda']);
+
+Route::post('schedule/date', [AgendaController::class, 'pesquisarPorData']);
+
+Route::get('schedule/find/{id}', [AgendaController::class, 'agendaId']);

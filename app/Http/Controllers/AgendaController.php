@@ -25,36 +25,47 @@ class AgendaController extends Controller
             "data" => $agenda
         ], 200);
     }
-    public function agendaRetornar()
+
+    public function pesquisarPorData(Request $request)
     {
-        $agenda = Agenda::All();
-        return response()->json([
-            'status' => true,
-            'data' => $agenda
-        ]);
-    }
-    public function agendaExcluir($id)
-    {
-        $agenda = Agenda::find($id);
-        if (!isset($agenda)) {
+        $agenda = Agenda::where('data_hora', 'like', '%' . $request->data_hora . '%')->get();
+
+        if (count($agenda) > 0) {
             return response()->json([
-                'status' => false,
-                'message' => 'Agenda não encontrado'
+                'status' => true,
+                'message' => $agenda
             ]);
         }
-        $agenda->delete();
         return response()->json([
-            'status' => true,
-            'message' => 'Agenda deletado com êxito'
+            'status' => false,
+            'message' => 'Não há resultados para a pesquisa'
         ]);
     }
+
+    public function pesquisarAgenda(Request $request)
+    {
+        $agenda = Agenda::where('profissional', 'like', '%' . $request->profissional . '%')->get();
+
+        if (count($agenda) > 0) {
+            return response()->json([
+                'status' => true,
+                'message' => $agenda
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há resultados para a pesquisa'
+        ]);
+    }
+
     public function agendaUpdate(UpdateAgendaFormRequest $request)
     {
         $agenda = Agenda::find($request->id);
+
         if (!isset($agenda)) {
             return response()->json([
                 'status' => false,
-                'message' => "Agenda não encontrado"
+                'message' => 'Não há resultados para a Agenda'
             ]);
         }
         if (isset($request->profissional_id)) {
@@ -78,7 +89,74 @@ class AgendaController extends Controller
         $agenda->update();
         return response()->json([
             'status' => true,
-            'message' => 'Agenda atualizado'
+            'message' => 'Agenda atualizada com sucesso'
         ]);
+    }
+
+    public function agendaExcluir($id)
+    {
+        $agenda = Agenda::find($id);
+
+        if (!isset($agenda)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Agenda não encontrada'
+            ]);
+        }
+        $agenda->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Agenda excluída com sucesso'
+        ]);
+    }
+
+    public function agendaRetornar()
+    {
+        $agenda = Agenda::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $agenda
+        ]);
+    }
+
+    public function agendaId($id)
+    {
+        $agenda = Agenda::find($id);
+        if ($agenda == null) {
+            return response()->json([
+                "status" => false,
+                "message" => "Agendamento não encontrado"
+            ]);
+        }
+        return response()->json([
+            "status" => true,
+            "data" => $agenda
+        ]);
+    }
+
+    public function horarioProfissional(AgendaFormRequest $request)
+    {
+
+        $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
+
+        if (count($agenda) > 0) {
+            return response()->json([
+                "success" => false,
+                "message" => "Horario ja cadastrado",
+                "data" => $agenda
+            ], 200);    
+        } else {
+
+            $agenda = Agenda::create([
+                'profissional_id' => $request->profissional_id,
+                'data_hora' => $request->data_hora
+            ]);
+            return response()->json([
+                "status" => true,
+                "message" => "Agendado com sucesso",
+                "data" => $agenda
+            ], 200);
+        }
     }
 }

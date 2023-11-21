@@ -37,7 +37,7 @@ class UpdateAgendaFormRequest extends FormRequest
     public function messages(){
         return [
             'profissional_id.required' => 'O ID é obrigatório',
-            'profissional_id' => 'O ID deve ser um número inteiro',
+            'profissional_id.integer' => 'O ID deve ser um número inteiro',
             'data_hora.required' => 'Data e hora obrigatório',
             'data_hora.date' => 'O campo deve conter apenas a data e a hora',
         ];
