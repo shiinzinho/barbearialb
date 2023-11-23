@@ -60,6 +60,16 @@ class AgendaController extends Controller
 
     public function agendaUpdate(UpdateAgendaFormRequest $request)
     {
+        $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
+
+        if (count($agenda) > 0) {
+            return response()->json([
+                "success" => false,
+                "message" => "Horario ja cadastrado",
+                "data" => $agenda
+            ], 200);    
+        } else {
+
         $agenda = Agenda::find($request->id);
 
         if (!isset($agenda)) {
@@ -92,6 +102,7 @@ class AgendaController extends Controller
             'message' => 'Agenda atualizada com sucesso'
         ]);
     }
+}
 
     public function agendaExcluir($id)
     {
@@ -137,7 +148,6 @@ class AgendaController extends Controller
 
     public function horarioProfissional(AgendaFormRequest $request)
     {
-
         $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
 
         if (count($agenda) > 0) {
