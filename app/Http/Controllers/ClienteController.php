@@ -121,9 +121,9 @@ class ClienteController extends Controller
         ]);
         }
         public function clienteRestaurar(Request $request){
-            $cliente = Cliente::where('cpf', $request->cpf)->first();
+            $cliente = Cliente::where('email', $request->email)->first();
             if(isset($cliente)){
-                $cliente->senha = Hash::make($cliente->cpf);
+                $cliente->senha = ($cliente->cpf);
                 $cliente->update();
                 return response()->json([
                     'status' => true,

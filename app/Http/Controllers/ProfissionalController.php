@@ -122,9 +122,9 @@ class ProfissionalController extends Controller
         ]);
         }
         public function profissionalRestaurar(Request $request){
-            $profissional = Profissional::where('cpf', $request->cpf)->first();
+            $profissional = Profissional::where('email', $request->email)->first();
             if(isset($profissional)){
-                $profissional->senha = Hash::make($profissional->cpf);
+                $profissional->senha = ($profissional->cpf);
                 $profissional->update();
                 return response()->json([
                     'status' => true,

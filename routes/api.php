@@ -46,7 +46,7 @@ Route::delete('client/delete/{id}', [ClienteController::class, 'clienteExcluir']
 
 Route::put('client/update', [ClienteController::class, 'clienteUpdate']);
 
-Route::put('client/restore', [ClienteController::class, 'clienteRestaurar']);
+Route::post('client/restore', [ClienteController::class, 'clienteRestaurar']);
 
 
 
@@ -71,7 +71,7 @@ Route::delete('professional/delete/{id}', [ProfissionalController::class, 'profi
 
 Route::put('professional/update', [ProfissionalController::class, 'profissionalUpdate']);
 
-Route::put('professional/restore', [ProfissionalController::class, 'profissionalRestaurar']);
+Route::post('professional/restore', [ProfissionalController::class, 'profissionalRestaurar']);
 
 
 
@@ -86,10 +86,10 @@ Route::delete('schedule/delete/{id}', [AgendaController::class, 'agendaExcluir']
 
 Route::put('schedule/update', [AgendaController::class, 'agendaUpdate']);
 
-Route::post('schedule/time', [AgendaController::class, 'horarioProfissional']);
+Route::post('schedule/time', [AgendaController::class, 'agendaTimeProfessional']);
 
-Route::post('schedule/find', [AgendaController::class, 'pesquisarAgenda']);
+Route::post('schedule/find', [AgendaController::class, 'agendaFind']);
 
-Route::post('schedule/date', [AgendaController::class, 'pesquisarPorData']);
+Route::post('schedule/date', [AgendaController::class, 'agendaFindData']);
 
 Route::get('schedule/find/{id}', [AgendaController::class, 'agendaId']);

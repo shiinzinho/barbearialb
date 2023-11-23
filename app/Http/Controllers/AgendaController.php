@@ -26,10 +26,9 @@ class AgendaController extends Controller
         ], 200);
     }
 
-    public function pesquisarPorData(Request $request)
+    public function agendaFindData(Request $request)
     {
         $agenda = Agenda::where('data_hora', 'like', '%' . $request->data_hora . '%')->get();
-
         if (count($agenda) > 0) {
             return response()->json([
                 'status' => true,
@@ -42,7 +41,7 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function pesquisarAgenda(Request $request)
+    public function agendaFind(Request $request)
     {
         $agenda = Agenda::where('profissional', 'like', '%' . $request->profissional . '%')->get();
 
@@ -146,7 +145,7 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function horarioProfissional(AgendaFormRequest $request)
+    public function agendaTimeProfessional(AgendaFormRequest $request)
     {
         $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
 
