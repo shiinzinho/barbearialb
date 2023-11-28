@@ -120,20 +120,26 @@ class ClienteController extends Controller
             'message' => 'Cliente deletado com êxito'
         ]);
         }
-        public function clienteRestaurar(Request $request){
-            $cliente = Cliente::where('email', $request->email)->first();
-            if(isset($cliente)){
-                $cliente->senha = ($cliente->cpf);
-                $cliente->update();
+        public function clienteRestaurar(Request $request)
+        {
+            $cliente = Cliente::where('email', 'ILIKE', $request->email)->first();
+            if ($cliente) {
+                $novaSenha = $cliente->cpf;
+                $cliente->update([
+                    'senha' => $novaSenha,
+                    'updated_at' => now()
+                ]);
                 return response()->json([
                     'status' => true,
-                    'message' => 'Senha redefinida'
+                    'message' => 'Senha redefinida',
+                    'nova_senha' => $novaSenha
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Cliente não encontrado'
                 ]);
             }
-            return response()->json([
-                'status' => false,
-                'message' => 'Não foi possível alterar a senha'
-            ]);
         }
         public function clienteUpdate(UpdateClienteFormRequest $request){
             $cliente = Cliente::find($request->id);

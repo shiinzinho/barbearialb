@@ -32,7 +32,7 @@ class AgendaController extends Controller
         if (count($agenda) > 0) {
             return response()->json([
                 'status' => true,
-                'message' => $agenda
+                'data' => $agenda
             ]);
         }
         return response()->json([
