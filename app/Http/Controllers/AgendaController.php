@@ -20,7 +20,7 @@ class AgendaController extends Controller
             'valor' => $request->valor,
         ]);
         return response()->json([
-            "success" => true,
+            "status" => true,
             "message" => "Agenda registrada com sucesso",
             "data" => $agenda
         ], 200);
@@ -63,7 +63,7 @@ class AgendaController extends Controller
 
         if (count($agenda) > 0) {
             return response()->json([
-                "success" => false,
+                "status" => false,
                 "message" => "Horario ja cadastrado",
                 "data" => $agenda
             ], 200);    
@@ -145,13 +145,13 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function agendaTimeProfessional(AgendaFormRequest $request)
+    public function agendaTimeProfissional(AgendaFormRequest $request)
     {
         $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
 
         if (count($agenda) > 0) {
             return response()->json([
-                "success" => false,
+                "status" => false,
                 "message" => "Horario ja cadastrado",
                 "data" => $agenda
             ], 200);    
@@ -167,5 +167,29 @@ class AgendaController extends Controller
                 "data" => $agenda
             ], 200);
         }
+    }
+    public function agendaFindTimeProfissional(Request $request)
+    {
+        if ($request->profissional_id == 0 || $request->profissional_id == '') {
+            $agenda = Agenda::all();
+        } else {
+            $agenda = Agenda::where('profissional_id', $request->profissional_id);
+
+            if (isset($request->data_hora)) {
+                $agenda->whereDate('data_hora', '>=', $request->data_hora);
+            }
+            $agenda = $agenda->get();
+        }
+
+        if (count($agenda) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $agenda
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há resultados para a pesquisa'
+        ]);
     }
 }
