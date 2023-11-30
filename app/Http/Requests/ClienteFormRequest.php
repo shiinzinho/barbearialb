@@ -54,6 +54,7 @@ class ClienteFormRequest extends FormRequest
             'celular.required' => 'Celular obrigatório',
             'celular.max' => 'Celular deve conter no máximo 11 caracteres',
             'celular.min' => 'Celular deve conter no mínimo 10 caracteres',
+            'celular.integer' => 'Celular deve conter apenas números',
             'email.required' => 'E-mail obrigatório',
             'email.max' => 'E-mail deve conter no máximo 120 caracteres',
             'email.email' => 'Formato de e-mail inválido',
