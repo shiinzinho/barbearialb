@@ -122,7 +122,7 @@ class ClienteController extends Controller
         }
         public function clienteRestaurar(Request $request)
         {
-            $cliente = Cliente::where('email', 'ILIKE', $request->email)->first();
+            $cliente = Cliente::where('email', 'like', $request->email)->first();
             if ($cliente) {
                 $novaSenha = $cliente->cpf;
                 $cliente->update([
