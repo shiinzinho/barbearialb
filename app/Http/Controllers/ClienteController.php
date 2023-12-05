@@ -126,7 +126,7 @@ class ClienteController extends Controller
             if ($cliente) {
                 $novaSenha = $cliente->cpf;
                 $cliente->update([
-                    'senha' => $novaSenha,
+                    'senha' => ($novaSenha),
                     'updated_at' => now()
                 ]);
                 return response()->json([
