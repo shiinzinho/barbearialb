@@ -56,7 +56,7 @@ class ClienteController extends Controller
             ]);
         }
         return response()->Json([
-            'status' => true,
+            'status' => false,
             'message' => "Não há resultados para pesquisa"
         ]);
     }
@@ -126,13 +126,13 @@ class ClienteController extends Controller
             if ($cliente) {
                 $novaSenha = $cliente->cpf;
                 $cliente->update([
-                    'senha' => ($novaSenha),
+                    'senha' => Hash::make ($novaSenha),
                     'updated_at' => now()
                 ]);
                 return response()->json([
                     'status' => true,
                     'message' => 'Senha redefinida',
-                    'nova_senha' => $novaSenha
+                    'nova_senha' => Hash::make ($novaSenha)
                 ]);
             } else {
                 return response()->json([
